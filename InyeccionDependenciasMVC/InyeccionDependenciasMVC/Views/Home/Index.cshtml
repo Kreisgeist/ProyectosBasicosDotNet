@@ -1,0 +1,11 @@
+﻿@model IEnumerable<InyeccionDependenciasMVC.Models.User>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    @foreach (User item in Model)
+   {
+       <p>@item.User1</p>
+   }
+</div>
