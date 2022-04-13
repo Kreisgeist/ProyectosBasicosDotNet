@@ -17,6 +17,7 @@ namespace HackerRank
                 Console.WriteLine("Select the program you want to run:");
                 Console.WriteLine("1.- Plus Minus");
                 Console.WriteLine("2.- Sparse Array(Pending)");
+                Console.WriteLine("3.- Time Conversion(Pending)");
                 Console.WriteLine("100.- Exit");
 
                 option = Convert.ToInt32(Console.ReadLine());

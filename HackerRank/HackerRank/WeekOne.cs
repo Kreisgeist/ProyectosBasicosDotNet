@@ -90,5 +90,47 @@ namespace HackerRank
             return repetitions;
         }
 
+        public static string timeConversion(string s)
+        {
+            string timeFormat = s.Substring(s.Length - 2);
+            string timeReturned = "";
+
+            if (timeFormat == "AM")
+            {
+                string hour = s.Substring(0, 2);
+
+                if (hour == "12")
+                {
+                    timeReturned += "00";
+                }
+                else
+                {
+                    timeReturned += hour;
+                }
+
+                timeReturned += s.Substring(2, s.Length - 4);
+            }
+            else
+            {
+                int hour = Convert.ToInt32(s.Substring(0, 2));
+
+                if (hour == 12)
+                {
+                    timeReturned += hour.ToString();
+                    timeReturned += s.Substring(2, s.Length - 4);
+                }
+                else
+                {
+                    hour += 12;
+                    timeReturned += hour.ToString();
+                    timeReturned += s.Substring(2, s.Length - 4);
+                }
+
+            }
+
+            Console.WriteLine(timeReturned);
+            return timeReturned;
+        }
+
     }
 }
