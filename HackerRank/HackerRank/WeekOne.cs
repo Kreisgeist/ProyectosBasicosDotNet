@@ -132,5 +132,30 @@ namespace HackerRank
             return timeReturned;
         }
 
+        public static void miniMaxSum(List<int> arr)
+        {
+            long minSum = 0;
+            long maxSum = 0;
+
+            for (int i = 0; i < arr.Count; i++)
+            {
+
+                List<long> tempArray = arr.ConvertAll(x => (long)x);
+                tempArray.RemoveAt(i);
+                long sum = tempArray.Sum();
+
+                if (sum > maxSum)
+                {
+                    maxSum = sum;
+                }
+                else if (sum < minSum || minSum == 0)
+                {
+                    minSum = sum;
+                }
+            }
+
+            Console.WriteLine($"{minSum} {maxSum}");
+        }
+
     }
 }
