@@ -16,6 +16,7 @@ namespace HackerRank
                 Console.WriteLine("Code by: Kreis");
                 Console.WriteLine("Select the program you want to run:");
                 Console.WriteLine("1.- Plus Minus");
+                Console.WriteLine("2.- Sparse Array(Pending)");
                 Console.WriteLine("100.- Exit");
 
                 option = Convert.ToInt32(Console.ReadLine());
@@ -24,7 +25,7 @@ namespace HackerRank
                 {
                     case 1:
 
-                        PlusMinus.plusMinus();
+                        WeekOne.plusMinus();
 
                         break;
                     case 100:

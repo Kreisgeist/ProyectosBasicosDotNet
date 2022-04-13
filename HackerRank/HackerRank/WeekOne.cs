@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HackerRank
 {
-    public class PlusMinus
+    public class WeekOne
     {
         /*
      * Complete the 'plusMinus' function below.
@@ -27,6 +27,7 @@ namespace HackerRank
 
             try
             {
+                //CREATING ARRAY OF INTS FROM STRING
                 for (int i = 0; i < userNumbers.Length; i++)
                 {
                     if (userNumbers[i] == ',')
@@ -57,27 +58,9 @@ namespace HackerRank
                 }
 
                 int n = arr.Count();
-                float countPositive = 0;
-                float countNegative = 0;
-                float countZero = 0;
-
-                for (int j = 0; j < n; j++)
-                {
-
-                    if (arr[j] > 0)
-                    {
-                        countPositive++;
-                    }
-                    else if (arr[j] < 0)
-                    {
-                        countNegative++;
-                    }
-                    else
-                    {
-                        countZero++;
-                    }
-
-                }
+                float countPositive = arr.Where(x => x > 0).Count();
+                float countNegative = arr.Where(x => x < 0).Count();
+                float countZero = arr.Where(x => x == 0).Count();
 
                 Console.WriteLine(Math.Round((countPositive / n), 6));
                 Console.WriteLine(Math.Round((countNegative / n), 6));
@@ -92,5 +75,20 @@ namespace HackerRank
             }
             
         }
+
+        public static List<int> matchingStrings(List<string> strings, List<string> queries)
+        {
+            List<int> repetitions = new List<int>();
+
+            foreach (string item in queries)
+            {
+
+                repetitions.Add(strings.Where(x => x == item).Count());
+
+            }
+
+            return repetitions;
+        }
+
     }
 }
