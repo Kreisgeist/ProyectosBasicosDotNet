@@ -1,0 +1,93 @@
+﻿@model dynamic
+@{
+    List<Category> categories = Model.Categories;
+    string? category;
+    int countRows = 0;
+}
+<div class="row">
+    <div class="col-1 m-3">
+        <label for="input-id">Id</label>
+        <input id="input-id" class="form-control" type="number" />
+    </div>
+    <div class="col-2 m-3">
+        <label for="select-medios">Filtro Medios</label>
+        <select id="select-medios" class="form-select">
+            <option selected disabled hidden>Selecciona</option>
+            @foreach (string item in Model.CAT_Medios)
+            {
+                <option value="@item">@item</option>
+            }
+            <option value="0">Ninguno</option>
+        </select>
+    </div>
+    <div class="col-3 m-3">
+        <label for="select-categorias">Filtro Categorias</label>
+        <select id="select-categorias" class="form-select">
+            <option selected disabled hidden>Selecciona una opción</option>
+            @foreach (string item in Model.CAT_Categories)
+            {
+                <option value="@item">@item</option>
+            }
+            <option value="0">Ninguno</option>
+        </select>
+    </div>
+    <div class="col-1 m-3">
+        <label for="min">Min Spots</label>
+        <input id="min" class="form-control" type="number" />
+    </div>
+    <div class="col-1 m-3">
+        <label for="max">Max Spots</label>
+        <input id="max" class="form-control" type="number" />
+    </div>
+</div>
+<hr />
+<div class="row justify-content-end">
+    <div class="col-2">
+        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal-alta">Nuevo Registro</button>
+    </div>
+</div>
+<hr />
+<div class="row">
+    <div class="col-12">
+        <table id="datatable-pages">
+            <thead>
+                <tr>
+                    <td>Id</td>
+                    <td>Medio</td>
+                    <td>Fecha</td>
+                    <td>Categoria</td>
+                    <td>Spots</td>
+                    <td>Baja</td>
+                    <td>Modificación</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Page item in Model.Pages)
+                {
+                    category = categories.Where(x => x.Id == item.IdCategory).Select(x => x.Name).FirstOrDefault();
+                    <tr id="row_@countRows">
+                        <td>@item.Id</td>
+                        <td>@item.Medio</td>
+                        <td>@item.Fecha.ToString("dd/MM/yyyy")</td>
+                        @if (category != null)
+                        {
+                            <td>@category</td>
+                        }
+                        else
+                        {
+                            <td>No hay una categoria asociada</td>
+                        }
+                        <td>@item.Spots</td>
+                        <td>
+                            <button type="button" value="@item.Id" class="btn btn-danger" onclick="deleteRegister(this.value,'@countRows')">Baja</button>
+                        </td>
+                        <td>
+                            <button type="button" value="@item.Id" class="btn btn-primary" onclick="loadRegisterData(this.value,'@countRows')">Modificación</button>
+                        </td>
+                    </tr>
+                    countRows++;
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
